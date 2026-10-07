@@ -8,21 +8,21 @@ description:
   human:
     en_US: Upload a reference audio URL to Producer Upload API to obtain an audio_id.
     zh_Hans: 上传参考音频 URL 到 Producer Upload API 获取 audio_id。
-  llm: Upload a public MP3 URL and get an audio_id for follow-up actions such as upload_extend/upload_cover.
-    Generation returns a task ID. Query the same task until complete; never resubmit
-    a pending generation.
+  llm: Upload a reference audio URL to Producer Upload API to obtain an audio_id.
+    For asynchronous results, preserve task_id and use the task retrieval tool until
+    completion. A successful submission is not completed output.
 parameters:
 - name: audio_url
   type: string
   required: true
+  form: form
   label:
     en_US: Audio URL
     zh_Hans: 音频链接
   human_description:
     en_US: Publicly accessible MP3 URL.
-    zh_Hans: 可公开访问的 MP3 链接。
+    zh_Hans: 待上传的自定义音频文件的 CDN 地址。
   llm_description: Publicly accessible MP3 URL.
-  form: form
 output_schema:
   type: object
   properties:

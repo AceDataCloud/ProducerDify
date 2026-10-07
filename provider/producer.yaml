@@ -9,8 +9,8 @@ identity:
   description:
     en_US: Use the Ace Data Cloud Producer APIs in Dify workflows.
     zh_Hans: 在 Dify 工作流中使用 Ace Data Cloud Producer API。
-  icon: icon.png
-  icon_dark: icon.png
+  icon: icon.jpg
+  icon_dark: icon.jpg
   tags:
   - entertainment
 credentials_for_provider:
@@ -34,6 +34,7 @@ tools:
 - tools/producer_get_video.yaml
 - tools/producer_get_wav.yaml
 - tools/producer_task_retrieve.yaml
+- tools/producer_tasks_retrieve_batch.yaml
 extra:
   python:
     source: provider/producer.py

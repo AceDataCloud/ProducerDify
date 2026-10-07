@@ -1,0 +1,80 @@
+[
+  {
+    "name": "producer_generate_audios-1",
+    "tool": "producer_generate_audios",
+    "inputs": {
+      "prompt": "Test"
+    },
+    "method": "POST",
+    "path": "/producer/audios",
+    "body": {
+      "prompt": "Test",
+      "lyric": "",
+      "async": true
+    }
+  },
+  {
+    "name": "producer_generate_lyrics-2",
+    "tool": "producer_generate_lyrics",
+    "inputs": {
+      "prompt": "Test"
+    },
+    "method": "POST",
+    "path": "/producer/lyrics",
+    "body": {
+      "prompt": "Test"
+    }
+  },
+  {
+    "name": "producer_upload_reference_audio-3",
+    "tool": "producer_upload_reference_audio",
+    "inputs": {
+      "audio_url": "https://example.org/reference.mp3"
+    },
+    "method": "POST",
+    "path": "/producer/upload",
+    "body": {
+      "audio_url": "https://example.org/reference.mp3"
+    }
+  },
+  {
+    "name": "producer_get_video-4",
+    "tool": "producer_get_video",
+    "inputs": {
+      "audio_id": "owned-audio"
+    },
+    "method": "POST",
+    "path": "/producer/videos",
+    "body": {
+      "audio_id": "owned-audio"
+    }
+  },
+  {
+    "name": "producer_get_wav-5",
+    "tool": "producer_get_wav",
+    "inputs": {
+      "audio_id": "owned-audio"
+    },
+    "method": "POST",
+    "path": "/producer/wav",
+    "body": {
+      "audio_id": "owned-audio"
+    }
+  },
+  {
+    "name": "producer_tasks_retrieve_batch-6",
+    "tool": "producer_tasks_retrieve_batch",
+    "inputs": {
+      "ids": "[\"owned-task\"]"
+    },
+    "method": "POST",
+    "path": "/producer/tasks",
+    "body": {
+      "action": "retrieve_batch",
+      "ids": [
+        "owned-task"
+      ]
+    },
+    "read_only": true
+  }
+]

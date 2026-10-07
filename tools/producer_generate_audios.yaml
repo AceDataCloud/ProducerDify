@@ -8,32 +8,34 @@ description:
   human:
     en_US: Generate audios with Ace Data Cloud Producer Audios API.
     zh_Hans: 通过 Ace Data Cloud Producer Audios API 生成歌曲。
-  llm: Generate audios via Ace Data Cloud Producer Audios API. Returns a task_id and
-    audio metadata (audio_url/image_url/lyric/etc). Generation returns a task ID.
-    Query the same task until complete; never resubmit a pending generation.
+  llm: Generate audios with Ace Data Cloud Producer Audios API. For asynchronous results,
+    preserve task_id and use the task retrieval tool until completion. A successful
+    submission is not completed output.
 parameters:
 - name: lyric
   type: string
   required: false
+  form: llm
   label:
     en_US: Lyric
     zh_Hans: 歌词
   human_description:
     en_US: Used when custom is true.
-    zh_Hans: custom=true 时使用。
+    zh_Hans: 用于生成音频的歌词内容。
   llm_description: Used when custom is true.
-  form: llm
 - name: model
   type: select
   required: false
+  form: form
   label:
     en_US: Model
     zh_Hans: 模型
   human_description:
-    en_US: Select the current API model for this operation.
+    en_US: Select a model currently supported by this API. Availability and pricing
+      depend on the chosen model.
     zh_Hans: 用于生成音乐的模型，默认为 `FUZZ-2.0`。
-  llm_description: Select the current API model for this operation.
-  form: form
+  llm_description: Select a model currently supported by this API. Availability and
+    pricing depend on the chosen model.
   default: FUZZ-2.0
   options:
   - value: FUZZ-2.0 Pro
@@ -71,6 +73,7 @@ parameters:
 - name: title
   type: string
   required: false
+  form: form
   label:
     en_US: Title
     zh_Hans: 标题
@@ -78,18 +81,17 @@ parameters:
     en_US: Set title.
     zh_Hans: 生成歌曲时使用的标题。
   llm_description: Set title.
-  form: form
 - name: action
   type: select
   required: false
+  form: form
   label:
     en_US: Action
     zh_Hans: 行为
   human_description:
     en_US: Generation action, e.g. generate/cover/extend/upload_cover/upload_extend/replace_section/swap_vocals/swap_instrumentals/variation.
-    zh_Hans: 生成行为，如 generate/cover/extend/upload_cover/upload_extend/replace_section/swap_vocals/swap_instrumentals/variation。
+    zh_Hans: 生成音频的操作类型。支持的值包括 `generate`（根据提示词生成）、`cover`（翻唱）、`extend`（续写）、`variation`（变体）、`swap_vocals`（替换人声）、`swap_instrumentals`（替换伴奏）、`replace_section`（替换片段）、`stems`（分离音轨）。
   llm_description: Generation action, e.g. generate/cover/extend/upload_cover/upload_extend/replace_section/swap_vocals/swap_instrumentals/variation.
-  form: form
   default: generate
   options:
   - value: generate
@@ -127,50 +129,62 @@ parameters:
 - name: custom
   type: boolean
   required: false
+  form: form
   label:
     en_US: Custom Mode
     zh_Hans: 自定义模式
   human_description:
     en_US: If true, generate from lyric/title and other custom parameters.
-    zh_Hans: 为 true 时使用自定义参数（如 lyric/title）生成。
+    zh_Hans: 是否为自定义模式。若为 `true`，音频将根据 `lyric`（歌词）生成；否则将根据 `prompt`（提示词）生成。
   llm_description: If true, generate from lyric/title and other custom parameters.
-  form: form
 - name: prompt
   type: string
   required: false
+  form: llm
   label:
     en_US: Prompt
     zh_Hans: 提示词
   human_description:
     en_US: Used when generating from a prompt (custom=false).
-    zh_Hans: custom=false 时使用提示词生成。
+    zh_Hans: 用于生成音频的提示词，长度不得超过 200 个字符。
   llm_description: Used when generating from a prompt (custom=false).
-  form: llm
 - name: audio_id
   type: string
   required: false
+  form: form
   label:
     en_US: Audio ID
     zh_Hans: 音频ID
   human_description:
     en_US: Required for cover/extend/upload_* and other edit actions.
-    zh_Hans: cover/extend/upload_* 等编辑动作需要 audio_id。
+    zh_Hans: 参考歌曲的唯一 ID。
   llm_description: Required for cover/extend/upload_* and other edit actions.
-  form: form
 - name: continue_at
   type: number
   required: false
+  form: form
   label:
     en_US: Continue At (seconds)
     zh_Hans: 续写时间(秒)
   human_description:
     en_US: Used for extend.
-    zh_Hans: 用于 extend。
+    zh_Hans: 指定从歌曲的哪个时间点（秒）开始续写。
   llm_description: Used for extend.
+- name: callback_url
+  type: string
+  required: false
   form: form
+  label:
+    en_US: Callback Url
+    zh_Hans: 回调 URL
+  human_description:
+    en_US: Set callback url for this operation.
+    zh_Hans: 音频生成完成后将被调用的回调 URL。
+  llm_description: Set callback url for this operation.
 - name: seed
   type: string
   required: false
+  form: form
   label:
     en_US: Seed
     zh_Hans: 种子
@@ -178,55 +192,54 @@ parameters:
     en_US: Set seed.
     zh_Hans: 音频生成所使用的随机种子。
   llm_description: Set seed.
-  form: form
 - name: instrumental
   type: boolean
   required: false
+  form: form
   label:
     en_US: Instrumental
     zh_Hans: 纯音乐
   human_description:
     en_US: Generate instrumental-only audios.
-    zh_Hans: 生成纯音乐。
+    zh_Hans: 若为 `true`，生成的音频将仅包含伴奏，不含人声歌词。
   llm_description: Generate instrumental-only audios.
-  form: form
-  default: false
 - name: sound_strength
   type: number
   required: false
+  form: form
   label:
     en_US: Sound Strength
     zh_Hans: 音频提示词强度
   human_description:
     en_US: 0.2-1, default 0.7.
-    zh_Hans: 0.2-1，默认 0.7。
+    zh_Hans: 音频提示词的影响强度，可在 0.2 到 1 之间选择，默认值为 0.5。
   llm_description: 0.2-1, default 0.7.
-  form: form
 - name: lyrics_strength
   type: number
   required: false
+  form: form
   label:
     en_US: Lyrics Strength
     zh_Hans: 歌词强度
   human_description:
     en_US: 0-1, default 0.7.
-    zh_Hans: 0-1，默认 0.7。
+    zh_Hans: 歌词对音频生成的影响程度，可在 0 到 1 之间选择，默认值为 0.5。
   llm_description: 0-1, default 0.7.
-  form: form
 - name: weirdness
   type: number
   required: false
+  form: form
   label:
     en_US: Weirdness
     zh_Hans: 风格奇特度
   human_description:
     en_US: 0-1, default 0.5.
-    zh_Hans: 0-1，默认 0.5。
+    zh_Hans: 风格独特性程度，可在 0 到 1 之间选择，默认值为 0.5。
   llm_description: 0-1, default 0.5.
-  form: form
 - name: replace_section_end
   type: number
   required: false
+  form: form
   label:
     en_US: Replace End (seconds)
     zh_Hans: 替换结束(秒)
@@ -234,10 +247,10 @@ parameters:
     en_US: Set replace end (seconds).
     zh_Hans: 替换片段的结束时间点（秒）。
   llm_description: Set replace end (seconds).
-  form: form
 - name: replace_section_start
   type: number
   required: false
+  form: form
   label:
     en_US: Replace Start (seconds)
     zh_Hans: 替换开始(秒)
@@ -245,7 +258,6 @@ parameters:
     en_US: Set replace start (seconds).
     zh_Hans: 替换片段的起始时间点（秒）。
   llm_description: Set replace start (seconds).
-  form: form
 output_schema:
   type: object
   properties:

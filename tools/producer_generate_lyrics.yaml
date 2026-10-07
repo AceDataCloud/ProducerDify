@@ -8,21 +8,21 @@ description:
   human:
     en_US: Generate lyrics with Ace Data Cloud Producer Lyrics API.
     zh_Hans: 通过 Ace Data Cloud Producer Lyrics API 生成歌词。
-  llm: Generate lyrics from a prompt via Ace Data Cloud Producer Lyrics API. Generation
-    returns a task ID. Query the same task until complete; never resubmit a pending
-    generation.
+  llm: Generate lyrics with Ace Data Cloud Producer Lyrics API. For asynchronous results,
+    preserve task_id and use the task retrieval tool until completion. A successful
+    submission is not completed output.
 parameters:
 - name: prompt
   type: string
-  required: true
+  required: false
+  form: llm
   label:
     en_US: Prompt
     zh_Hans: 提示词
   human_description:
     en_US: Describe what the song lyrics are about.
-    zh_Hans: 描述要生成的歌词主题。
+    zh_Hans: 用于生成歌词的提示词。
   llm_description: Describe what the song lyrics are about.
-  form: llm
 output_schema:
   type: object
   properties:

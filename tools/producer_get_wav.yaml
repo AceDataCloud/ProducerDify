@@ -8,21 +8,21 @@ description:
   human:
     en_US: Get the generated song WAV download URLs by audio_id.
     zh_Hans: 通过 audio_id 获取歌曲 WAV 下载链接。
-  llm: Retrieve WAV file_url list for a given audio_id via Ace Data Cloud Producer
-    WAV API. Generation returns a task ID. Query the same task until complete; never
-    resubmit a pending generation.
+  llm: Get the generated song WAV download URLs by audio_id. For asynchronous results,
+    preserve task_id and use the task retrieval tool until completion. A successful
+    submission is not completed output.
 parameters:
 - name: audio_id
   type: string
   required: true
+  form: form
   label:
     en_US: Audio ID
     zh_Hans: 音频ID
   human_description:
     en_US: Producer audio id.
-    zh_Hans: Producer 生成的歌曲 ID。
+    zh_Hans: 参考音频的 ID。
   llm_description: Producer audio id.
-  form: form
 output_schema:
   type: object
   properties:
