@@ -1,0 +1,46 @@
+identity:
+  name: producer_generate_lyrics
+  author: acedatacloud
+  label:
+    en_US: Producer Generate Lyrics
+    zh_Hans: Producer 生成歌词
+description:
+  human:
+    en_US: Generate lyrics with Ace Data Cloud Producer Lyrics API.
+    zh_Hans: 通过 Ace Data Cloud Producer Lyrics API 生成歌词。
+  llm: Generate lyrics from a prompt via Ace Data Cloud Producer Lyrics API. Generation
+    returns a task ID. Query the same task until complete; never resubmit a pending
+    generation.
+parameters:
+- name: prompt
+  type: string
+  required: true
+  label:
+    en_US: Prompt
+    zh_Hans: 提示词
+  human_description:
+    en_US: Describe what the song lyrics are about.
+    zh_Hans: 描述要生成的歌词主题。
+  llm_description: Describe what the song lyrics are about.
+  form: llm
+output_schema:
+  type: object
+  properties:
+    status:
+      type: string
+    success:
+      type: boolean
+    task_id:
+      type: string
+    trace_id:
+      type: string
+    media_urls:
+      type: array
+      items:
+        type: string
+    data: {}
+    result:
+      type: object
+extra:
+  python:
+    source: tools/producer_generate_lyrics.py
