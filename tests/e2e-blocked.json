@@ -30,5 +30,18 @@
     }
   ],
   "marketplace_submitted": false,
-  "next_action": "Retest after service availability or API behavior changes; never mark accepted/pending jobs complete."
+  "next_action": "Retest after service availability or API behavior changes; never mark accepted/pending jobs complete.",
+  "availability_review": {
+    "checked_at": "2026-10-08T03:57:32.613857+00:00",
+    "method": "read-only correlated request logs, public API catalog, current worker source and deployment readiness",
+    "finding": "The music service accepted the task but later reported a terminal generation failure.",
+    "boundary": "The recorded standard-model task failed after acceptance; a separate Pro case reported temporary capacity exhaustion.",
+    "trace_id": "6c616b45-981b-4f3f-b37a-8d5394ecca56",
+    "task_id": "19ca24a1-da51-4967-b7b1-1fa22d20ae7c",
+    "recorded_call_deducted_credits": 0,
+    "plugin_defect_confirmed": false,
+    "current_runtime_recovery_proven": false,
+    "new_paid_request_submitted": false,
+    "resume_when": "A service recovery or relevant deployment change is evidenced; then one minimal real Dify primary case must reach terminal success, return decodable media and reconcile usage before source merge and official submission."
+  }
 }
