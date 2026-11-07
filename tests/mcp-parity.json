@@ -1,0 +1,236 @@
+{
+  "mcp_revision": "f0eed10abf310824cb4c33d4944c63d3654ac95b",
+  "mapping": [
+    {
+      "mcp_tool": "producer_list_models",
+      "dify_tools": [],
+      "parameters": {},
+      "unresolved": [],
+      "note": "Model/action selectors and the API reference; informational guidance does not submit a request."
+    },
+    {
+      "mcp_tool": "producer_list_actions",
+      "dify_tools": [],
+      "parameters": {},
+      "unresolved": [],
+      "note": "Model/action selectors and the API reference; informational guidance does not submit a request."
+    },
+    {
+      "mcp_tool": "producer_get_lyric_format_guide",
+      "dify_tools": [],
+      "parameters": {},
+      "unresolved": [],
+      "note": "Model/action selectors and the API reference; informational guidance does not submit a request."
+    },
+    {
+      "mcp_tool": "producer_generate_music",
+      "dify_tools": [
+        "producer_generate_audios"
+      ],
+      "parameters": {
+        "prompt": "prompt",
+        "model": "model",
+        "instrumental": "instrumental",
+        "lyrics_strength": "lyrics_strength",
+        "sound_strength": "sound_strength",
+        "weirdness": "weirdness",
+        "seed": "seed",
+        "callback_url": "callback_url",
+        "async_": "Dify submit/poll output: async=true, stream=false"
+      },
+      "unresolved": [],
+      "note": "Set action=generate"
+    },
+    {
+      "mcp_tool": "producer_generate_custom_music",
+      "dify_tools": [
+        "producer_generate_audios"
+      ],
+      "parameters": {
+        "lyric": "lyric",
+        "title": "title",
+        "prompt": "prompt",
+        "model": "model",
+        "instrumental": "instrumental",
+        "lyrics_strength": "lyrics_strength",
+        "sound_strength": "sound_strength",
+        "weirdness": "weirdness",
+        "seed": "seed",
+        "callback_url": "callback_url",
+        "async_": "Dify submit/poll output: async=true, stream=false"
+      },
+      "unresolved": [],
+      "note": "Set action=generate"
+    },
+    {
+      "mcp_tool": "producer_extend_music",
+      "dify_tools": [
+        "producer_generate_audios"
+      ],
+      "parameters": {
+        "audio_id": "audio_id",
+        "continue_at": "continue_at",
+        "lyric": "lyric",
+        "prompt": "prompt",
+        "model": "model",
+        "callback_url": "callback_url",
+        "async_": "Dify submit/poll output: async=true, stream=false"
+      },
+      "unresolved": [],
+      "note": "Set action=extend"
+    },
+    {
+      "mcp_tool": "producer_cover_music",
+      "dify_tools": [
+        "producer_generate_audios"
+      ],
+      "parameters": {
+        "audio_id": "audio_id",
+        "prompt": "prompt",
+        "model": "model",
+        "callback_url": "callback_url",
+        "async_": "Dify submit/poll output: async=true, stream=false"
+      },
+      "unresolved": [],
+      "note": "Set action=cover"
+    },
+    {
+      "mcp_tool": "producer_variation_music",
+      "dify_tools": [
+        "producer_generate_audios"
+      ],
+      "parameters": {
+        "audio_id": "audio_id",
+        "prompt": "prompt",
+        "model": "model",
+        "callback_url": "callback_url",
+        "async_": "Dify submit/poll output: async=true, stream=false"
+      },
+      "unresolved": [],
+      "note": "Set action=variation"
+    },
+    {
+      "mcp_tool": "producer_swap_vocals",
+      "dify_tools": [
+        "producer_generate_audios"
+      ],
+      "parameters": {
+        "audio_id": "audio_id",
+        "callback_url": "callback_url",
+        "async_": "Dify submit/poll output: async=true, stream=false"
+      },
+      "unresolved": [],
+      "note": "Set action=swap_vocals"
+    },
+    {
+      "mcp_tool": "producer_swap_instrumentals",
+      "dify_tools": [
+        "producer_generate_audios"
+      ],
+      "parameters": {
+        "audio_id": "audio_id",
+        "callback_url": "callback_url",
+        "async_": "Dify submit/poll output: async=true, stream=false"
+      },
+      "unresolved": [],
+      "note": "Set action=swap_instrumentals"
+    },
+    {
+      "mcp_tool": "producer_replace_section",
+      "dify_tools": [
+        "producer_generate_audios"
+      ],
+      "parameters": {
+        "audio_id": "audio_id",
+        "replace_section_start": "replace_section_start",
+        "replace_section_end": "replace_section_end",
+        "lyric": "lyric",
+        "prompt": "prompt",
+        "model": "model",
+        "callback_url": "callback_url",
+        "async_": "Dify submit/poll output: async=true, stream=false"
+      },
+      "unresolved": [],
+      "note": "Set action=replace_section"
+    },
+    {
+      "mcp_tool": "producer_stems_music",
+      "dify_tools": [
+        "producer_generate_audios"
+      ],
+      "parameters": {
+        "audio_id": "audio_id",
+        "callback_url": "callback_url",
+        "async_": "Dify submit/poll output: async=true, stream=false"
+      },
+      "unresolved": [],
+      "note": "Set action=stems"
+    },
+    {
+      "mcp_tool": "producer_generate_lyrics",
+      "dify_tools": [
+        "producer_generate_lyrics"
+      ],
+      "parameters": {
+        "prompt": "prompt"
+      },
+      "unresolved": [],
+      "note": ""
+    },
+    {
+      "mcp_tool": "producer_get_task",
+      "dify_tools": [
+        "producer_task_retrieve"
+      ],
+      "parameters": {
+        "task_id": "task_id"
+      },
+      "unresolved": [],
+      "note": "Set action=retrieve"
+    },
+    {
+      "mcp_tool": "producer_get_tasks_batch",
+      "dify_tools": [
+        "producer_tasks_retrieve_batch"
+      ],
+      "parameters": {
+        "task_ids": "ids"
+      },
+      "unresolved": [],
+      "note": "Set action=retrieve_batch"
+    },
+    {
+      "mcp_tool": "producer_upload_audio",
+      "dify_tools": [
+        "producer_upload_reference_audio"
+      ],
+      "parameters": {
+        "audio_url": "audio_url"
+      },
+      "unresolved": [],
+      "note": ""
+    },
+    {
+      "mcp_tool": "producer_generate_video",
+      "dify_tools": [
+        "producer_get_video"
+      ],
+      "parameters": {
+        "audio_id": "audio_id"
+      },
+      "unresolved": [],
+      "note": ""
+    },
+    {
+      "mcp_tool": "producer_generate_wav",
+      "dify_tools": [
+        "producer_get_wav"
+      ],
+      "parameters": {
+        "audio_id": "audio_id"
+      },
+      "unresolved": [],
+      "note": ""
+    }
+  ]
+}

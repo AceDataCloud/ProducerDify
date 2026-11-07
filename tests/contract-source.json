@@ -1,0 +1,33 @@
+{
+  "backend_revision": "7b4bbf0e4f6b83c273baed1d5b8e9bea0f3ece1c",
+  "apis": [
+    {
+      "path": "/producer/audios",
+      "spec": "openapi/01d96900-9f8c-41d7-814c-95c7a885ba61.json"
+    },
+    {
+      "path": "/producer/lyrics",
+      "spec": "openapi/2f636fdb-faa4-4308-8cef-9258dd14fd90.json"
+    },
+    {
+      "path": "/producer/upload",
+      "spec": "openapi/91fcbb81-8bc9-4ed4-bdfa-0f296b2fec9d.json"
+    },
+    {
+      "path": "/producer/videos",
+      "spec": "openapi/5e06cbdd-ba7d-456d-a211-e3f242adec82.json"
+    },
+    {
+      "path": "/producer/wav",
+      "spec": "openapi/e7cad274-9c48-494c-b7e3-fc1556eea827.json"
+    }
+  ],
+  "icon_source": {
+    "repository": "AceDataCloud/Dify",
+    "revision": "eaf0e68cd34cfe4cadece7a9ee34a98aac6b961e^",
+    "path": "plugins/producer/_assets/icon.png"
+  },
+  "icon_sha256": {
+    "icon.png": "fd3fb78b270ece8686f74aefd40a69ba16797553dbbec08f68d0ca2dbc7cdbd9"
+  }
+}

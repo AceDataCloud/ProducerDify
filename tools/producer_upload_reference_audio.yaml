@@ -1,0 +1,46 @@
+identity:
+  name: producer_upload_reference_audio
+  author: acedatacloud
+  label:
+    en_US: Producer Upload Reference Audio
+    zh_Hans: Producer 上传参考音频
+description:
+  human:
+    en_US: Upload a reference audio URL to Producer Upload API to obtain an audio_id.
+    zh_Hans: 上传参考音频 URL 到 Producer Upload API 获取 audio_id。
+  llm: Upload a reference audio URL to Producer Upload API to obtain an audio_id.
+    For asynchronous results, preserve task_id and use the task retrieval tool until
+    completion. A successful submission is not completed output.
+parameters:
+- name: audio_url
+  type: string
+  required: true
+  form: form
+  label:
+    en_US: Audio URL
+    zh_Hans: 音频链接
+  human_description:
+    en_US: Publicly accessible MP3 URL.
+    zh_Hans: 待上传的自定义音频文件的 CDN 地址。
+  llm_description: Publicly accessible MP3 URL.
+output_schema:
+  type: object
+  properties:
+    status:
+      type: string
+    success:
+      type: boolean
+    task_id:
+      type: string
+    trace_id:
+      type: string
+    media_urls:
+      type: array
+      items:
+        type: string
+    data: {}
+    result:
+      type: object
+extra:
+  python:
+    source: tools/producer_upload_reference_audio.py

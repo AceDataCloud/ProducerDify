@@ -1,0 +1,97 @@
+{
+  "backend_revision": "fa94598267a82545fb1afed6ee26bafd6cbb9ca7",
+  "mcp_revision": "f0eed10abf310824cb4c33d4944c63d3654ac95b",
+  "tools": [
+    {
+      "tool": "producer_generate_audios",
+      "method": "POST",
+      "path": "/producer/audios",
+      "parameters": [
+        "lyric",
+        "model",
+        "title",
+        "action",
+        "custom",
+        "prompt",
+        "audio_id",
+        "continue_at",
+        "callback_url",
+        "seed",
+        "instrumental",
+        "sound_strength",
+        "lyrics_strength",
+        "weirdness",
+        "replace_section_end",
+        "replace_section_start"
+      ],
+      "aliases": {},
+      "schema_source": "openapi/01d96900-9f8c-41d7-814c-95c7a885ba61.json"
+    },
+    {
+      "tool": "producer_generate_lyrics",
+      "method": "POST",
+      "path": "/producer/lyrics",
+      "parameters": [
+        "prompt"
+      ],
+      "aliases": {},
+      "schema_source": "openapi/2f636fdb-faa4-4308-8cef-9258dd14fd90.json"
+    },
+    {
+      "tool": "producer_upload_reference_audio",
+      "method": "POST",
+      "path": "/producer/upload",
+      "parameters": [
+        "audio_url"
+      ],
+      "aliases": {},
+      "schema_source": "openapi/91fcbb81-8bc9-4ed4-bdfa-0f296b2fec9d.json"
+    },
+    {
+      "tool": "producer_get_video",
+      "method": "POST",
+      "path": "/producer/videos",
+      "parameters": [
+        "audio_id"
+      ],
+      "aliases": {},
+      "schema_source": "openapi/5e06cbdd-ba7d-456d-a211-e3f242adec82.json"
+    },
+    {
+      "tool": "producer_get_wav",
+      "method": "POST",
+      "path": "/producer/wav",
+      "parameters": [
+        "audio_id"
+      ],
+      "aliases": {},
+      "schema_source": "openapi/e7cad274-9c48-494c-b7e3-fc1556eea827.json"
+    },
+    {
+      "tool": "producer_task_retrieve",
+      "method": "POST",
+      "path": "/producer/tasks",
+      "parameters": [
+        "task_id",
+        "wait_seconds"
+      ],
+      "aliases": {},
+      "schema_source": "openapi/e706d672-d7c9-4232-8652-0cf53219e7bf.json"
+    },
+    {
+      "tool": "producer_tasks_retrieve_batch",
+      "method": "POST",
+      "path": "/producer/tasks",
+      "parameters": [
+        "ids"
+      ],
+      "aliases": {},
+      "schema_source": "openapi/e706d672-d7c9-4232-8652-0cf53219e7bf.json"
+    }
+  ],
+  "mcp_scope": "producer",
+  "notes": [
+    "Informational MCP model/action lists are represented by tool dropdowns and README capability tables.",
+    "GPT Image covers image-generation/editing/task capabilities of the broader OpenAI MCP; chat is supplied by ModelProviderDify."
+  ]
+}

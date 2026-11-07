@@ -1,0 +1,66 @@
+{
+  "checked_at": "2026-11-08T01:48:31.668037+08:00",
+  "public_contract_url": "01d96900-9f8c-41d7-814c-95c7a885ba61",
+  "public_contract_source": "https://platform.acedata.cloud/api/v1/apis/01d96900-9f8c-41d7-814c-95c7a885ba61",
+  "backend_source_head": "5785c32bd91e0ad287842fba5e2c66dca5327bff",
+  "no_new_paid_generation": true,
+  "no_new_token": true,
+  "historical_successful_primary_case_available": false,
+  "old_failed_cases_preserved": "tests/e2e-blocked.json unchanged",
+  "source_runtime_fix": true,
+  "changes": "Public conditional Producer request validation; brand labels and Applications Token4UTM guide with sourced historic images",
+  "Producer_is_separate_music_service": true,
+  "SDK_and_mock_scope": "offline request/response tests only; no new host/browser",
+  "public_contract_evidence": "Current unauthenticated PlatformBackend API record includes request definition, service alias and free task-query contract; publication is not runtime recovery proof.",
+  "offline_suite": {
+    "command": "PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 python -m pytest -q",
+    "passed": 38,
+    "warning": "one upstream SDK Pydantic config deprecation",
+    "Ruff_lint_format": "passed"
+  },
+  "public_current_model_contract": [
+    "FUZZ-2.0 Pro",
+    "FUZZ-2.0",
+    "FUZZ-2.0 Raw",
+    "FUZZ-1.1 Pro",
+    "FUZZ-1.0 Pro",
+    "FUZZ-1.0",
+    "FUZZ-1.1",
+    "FUZZ-0.8"
+  ],
+  "primary_recovery": "not evidenced; no successful historical primary case in candidate e2e-audit/progress files to re-query",
+  "paid_or_sameID_calls_submitted": 0,
+  "source_tests_are_not_real_task_evidence": true,
+  "Market_listing": "Current exact alias returned404plugin not found; no official submission initiated.",
+  "workflow": "only existing offline tests/Ruff; no automatic packaging or publication",
+  "screenshot_source": "_assets/tutorial/key-screenshots-provenance.json; Applications2026-10-09CST, not candidate native UI or generation result",
+  "contract_revision": {
+    "public_api_id": "01d96900-9f8c-41d7-814c-95c7a885ba61",
+    "observed_public_record_SHA256": "fe8c7ae9c8ad5bc723a8d987679da0e077804a1f52cc3bdde7cd187f336e4d07",
+    "request_oneOf_branches": 3,
+    "regression_before_fix": "5 failed,3passed; valid instrumental rejected and4invalid combinations escaped localvalidation (transport mocked; no actualAPI call)",
+    "regression_after_fix": "8passed; fullsuite38passed",
+    "schema_dialect_note": "OpenAPI boolean exclusiveMinimum:true with minimum0 becomes Draft202012 exclusiveMinimum0; validcontinue_at0.25 must remain accepted",
+    "service_identity": "Producer Music Generation / producer; independent of retired PlatformPublisher and Sora; no retired product restored"
+  },
+  "gate_history": [
+    {
+      "prior_checked_at": "2026-11-08T01:34:33.793750+08:00",
+      "prior_owner_wording": "Keep sourcePR1 OPEN and withhold Marketplace submission until current primary realDify terminal success, decodable media and reconciled usage evidence; mock/schema/credentials do not replace it.",
+      "correction_at": "2026-11-08T01:48:31.668037+08:00",
+      "correction": "Primary success/media/usage is a formal business-release gate, not a mandatory candidate source-merge gate."
+    }
+  ],
+  "source_merge": {
+    "status": "ready_for_reviewed_candidate_source_merge",
+    "criteria": "Exact head/base, offline suite/Ruff green, no required review/check unresolved, fixed endpoint/secret/no-paid-retry/input validation reviewed. No source rule requires a paid generation before candidate source merge.",
+    "does_not_imply": "Current generation availability, media decoding, billing, D1official listing or production readiness."
+  },
+  "formal_release": {
+    "status": "WITHHELD",
+    "stable_tag_created": false,
+    "formal_package_published": false,
+    "Marketplace_submitted": false,
+    "gate": "Current realDify primary terminal success, decodable media and reconciled usage evidence remain required. No new paid generation authorized."
+  }
+}
