@@ -539,8 +539,6 @@ def finalize_payload(
 ) -> dict[str, Any]:
     if endpoint["path"] == "/producer/audios":
         action = body.get("action", "generate")
-        if action == "generate" and not body.get("prompt") and not body.get("lyric"):
-            raise ValueError("A music prompt or custom lyrics are required.")
         if action != "generate" and not body.get("audio_id"):
             raise ValueError("The selected action requires an existing audio ID.")
     return body

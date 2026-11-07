@@ -317,3 +317,39 @@ def test_primary_audio_does_not_advertise_optional_unrendered_video():
         assert api.media_urls(value) == ["https://example.org/song.mp3"]
     else:
         assert "https://example.org/song.mp3" in api.media_urls(value)
+
+
+def test_custom_instrumental_needs_no_placeholder_prompt_or_lyrics():
+    method, path, body, _, _, read_only, _ = Client("token").prepare(
+        "producer_generate_audios", {"custom": True, "instrumental": True}
+    )
+    assert method == "POST" and path == "/producer/audios" and not read_only
+    assert body["custom"] is True and body["instrumental"] is True
+    assert body["async"] is True
+
+
+@pytest.mark.parametrize(
+    "parameters",
+    [
+        {"custom": True, "lyric": "Owned lyrics"},
+        {"action": "cover", "audio_id": "owned-audio"},
+        {"action": "extend", "audio_id": "owned-audio", "continue_at": 0.25, "lyric": "Continue"},
+    ],
+)
+def test_public_conditional_music_requests_are_supported(parameters):
+    assert Client("token").prepare("producer_generate_audios", parameters)[1] == "/producer/audios"
+
+
+@pytest.mark.parametrize(
+    "parameters",
+    [
+        {"lyric": "Lyrics alone do not enable custom mode"},
+        {"custom": True, "prompt": "No lyrics with custom vocals"},
+        {"action": "extend", "audio_id": "owned-audio", "lyric": "Missing position"},
+        {"action": "extend", "audio_id": "owned-audio", "continue_at": 0.25},
+    ],
+)
+def test_conditional_music_inputs_fail_before_paid_network(monkeypatch, parameters):
+    monkeypatch.setattr(requests, "request", lambda *a, **k: pytest.fail("paid request escaped"))
+    with pytest.raises(ValueError):
+        Client("token").invoke("producer_generate_audios", parameters)

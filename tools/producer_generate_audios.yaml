@@ -8,9 +8,7 @@ description:
   human:
     en_US: Generate audios with Ace Data Cloud Producer Audios API.
     zh_Hans: 通过 Ace Data Cloud Producer Audios API 生成歌曲。
-  llm: Generate audios with Ace Data Cloud Producer Audios API. For asynchronous results,
-    preserve task_id and use the task retrieval tool until completion. A successful
-    submission is not completed output.
+  llm: Generate audios with Ace Data Cloud Producer Audios API. For asynchronous results, preserve task_id and use the task retrieval tool until completion. A successful submission is not completed output.
 parameters:
 - name: lyric
   type: string
@@ -20,9 +18,9 @@ parameters:
     en_US: Lyric
     zh_Hans: 歌词
   human_description:
-    en_US: Used when custom is true.
-    zh_Hans: 用于生成音频的歌词内容。
-  llm_description: Used when custom is true.
+    en_US: Required for custom vocals and vocal extensions; optional for custom instrumental generation.
+    zh_Hans: 自定义人声和人声续写需歌词；自定义纯音乐生成可省略。
+  llm_description: Required for custom vocals and vocal extensions; optional for custom instrumental generation.
 - name: model
   type: select
   required: false
@@ -31,11 +29,9 @@ parameters:
     en_US: Model
     zh_Hans: 模型
   human_description:
-    en_US: Select a model currently supported by this API. Availability and pricing
-      depend on the chosen model.
+    en_US: Select a model currently supported by this API. Availability and pricing depend on the chosen model.
     zh_Hans: 用于生成音乐的模型，默认为 `FUZZ-2.0`。
-  llm_description: Select a model currently supported by this API. Availability and
-    pricing depend on the chosen model.
+  llm_description: Select a model currently supported by this API. Availability and pricing depend on the chosen model.
   default: FUZZ-2.0
   options:
   - value: FUZZ-2.0 Pro
@@ -145,9 +141,9 @@ parameters:
     en_US: Prompt
     zh_Hans: 提示词
   human_description:
-    en_US: Used when generating from a prompt (custom=false).
-    zh_Hans: 用于生成音频的提示词，长度不得超过 200 个字符。
-  llm_description: Used when generating from a prompt (custom=false).
+    en_US: Required for standard generation; optional in custom mode.
+    zh_Hans: 普通生成必填；custom模式可省略。
+  llm_description: Required for standard generation; optional in custom mode.
 - name: audio_id
   type: string
   required: false
@@ -167,9 +163,9 @@ parameters:
     en_US: Continue At (seconds)
     zh_Hans: 续写时间(秒)
   human_description:
-    en_US: Used for extend.
-    zh_Hans: 指定从歌曲的哪个时间点（秒）开始续写。
-  llm_description: Used for extend.
+    en_US: Required and greater than zero for extend.
+    zh_Hans: extend必填且必须大于0。
+  llm_description: Required and greater than zero for extend.
 - name: callback_url
   type: string
   required: false

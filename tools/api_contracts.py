@@ -9,8 +9,84 @@ ENDPOINTS = {
         "operation": "generate",
         "schema": {
             "type": "object",
-            "required": ["action", "lyric", "prompt"],
+            "oneOf": [
+                {
+                    "type": "object",
+                    "allOf": [
+                        {
+                            "anyOf": [
+                                {
+                                    "required": ["custom"],
+                                    "properties": {"custom": {"enum": [True]}},
+                                },
+                                {
+                                    "required": ["prompt"],
+                                    "properties": {"prompt": {"type": "string", "minLength": 1}},
+                                },
+                            ]
+                        },
+                        {
+                            "anyOf": [
+                                {
+                                    "not": {
+                                        "required": ["custom"],
+                                        "properties": {"custom": {"enum": [True]}},
+                                    }
+                                },
+                                {
+                                    "required": ["instrumental"],
+                                    "properties": {"instrumental": {"enum": [True]}},
+                                },
+                                {
+                                    "required": ["lyric"],
+                                    "properties": {"lyric": {"type": "string", "minLength": 1}},
+                                },
+                            ]
+                        },
+                    ],
+                    "properties": {"action": {"enum": ["generate"]}},
+                },
+                {
+                    "type": "object",
+                    "anyOf": [
+                        {
+                            "required": ["instrumental"],
+                            "properties": {"instrumental": {"enum": [True]}},
+                        },
+                        {
+                            "required": ["lyric"],
+                            "properties": {"lyric": {"type": "string", "minLength": 1}},
+                        },
+                    ],
+                    "required": ["audio_id", "continue_at"],
+                    "properties": {
+                        "action": {"enum": ["extend"]},
+                        "audio_id": {"type": "string", "minLength": 1},
+                        "continue_at": {"type": "number", "exclusiveMinimum": 0},
+                    },
+                },
+                {
+                    "type": "object",
+                    "required": ["audio_id"],
+                    "properties": {
+                        "action": {
+                            "enum": [
+                                "cover",
+                                "variation",
+                                "swap_vocals",
+                                "swap_instrumentals",
+                                "replace_section",
+                                "stems",
+                            ]
+                        },
+                        "audio_id": {"type": "string", "minLength": 1},
+                    },
+                },
+            ],
+            "required": ["action"],
             "properties": {
+                "seed": {"type": "string"},
+                "async": {"type": "boolean"},
                 "lyric": {"type": "string"},
                 "model": {
                     "enum": [
@@ -39,17 +115,15 @@ ENDPOINTS = {
                     ],
                     "type": "string",
                 },
-                "custom": {"type": "boolean"},
+                "custom": {"type": "boolean", "default": False},
                 "prompt": {"type": "string"},
                 "audio_id": {"type": "string"},
+                "weirdness": {"type": "number"},
                 "continue_at": {"type": "number"},
                 "callback_url": {"type": "string"},
-                "async": {"type": "boolean"},
-                "seed": {"type": "string"},
-                "instrumental": {"type": "boolean"},
+                "instrumental": {"type": "boolean", "default": False},
                 "sound_strength": {"type": "number"},
                 "lyrics_strength": {"type": "number"},
-                "weirdness": {"type": "number"},
                 "replace_section_end": {"type": "number"},
                 "replace_section_start": {"type": "number"},
             },

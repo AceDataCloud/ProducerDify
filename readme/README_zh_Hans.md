@@ -1,14 +1,24 @@
-# Producer Dify 插件
+# Producer by Ace Data Cloud Dify 插件
 
-> **发布状态（2026-10-08）：** 尚未发布到 Dify 官方市场。真实 Dify 主生成流程仍受服务可用性阻碍。音乐任务虽已接受，但最终生成失败；另一个 Pro 案例报告服务繁忙。 源码测试通过不表示生成服务已经可用，详见[验收记录](../tests/e2e-blocked.json)。
+> **发布状态（2026-10-08）：** 尚未发布到 Dify 官方市场。真实Dify主生成交付门槛尚未通过；下述为10月8日服务证据，不是11月8日实时生成探测。音乐任务虽已接受，但最终生成失败；另一个 Pro 案例报告服务繁忙。 源码测试通过不表示生成服务已经可用，详见[验收记录](../tests/e2e-blocked.json)。11月8日接续仅离线契约检查，未证明服务恢复。
 
 在 Dify 中使用 Ace Data Cloud 的 Producer API。插件免费，API 需要自己的账号和服务权限，并按当前价格扣费。
 
 ## 安装与授权
 
-1. 在 [Ace Data Cloud](https://platform.acedata.cloud/console/applications) 开通服务并创建 API Token；使用前核对[当前模型与价格](https://platform.acedata.cloud/models)。
+1. 在 [Ace Data Cloud](https://platform.acedata.cloud/console/applications?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen&utm_content=producerdify_readme_api_key) 开通服务并创建 API Token；使用前核对[当前模型与价格](https://platform.acedata.cloud/models)。
 2. 官方审核并上架后，可从 Dify Marketplace 安装。审核期间可以在测试环境使用 Dify 官方的包安装或远程调试流程。PR 已提交不表示市场已发布，也不表示默认预装。
 3. 在 Dify 的插件或工具页填写 Bearer Token（`acedata_bearer_token`）。凭据检查不会生成内容。授权使用只读任务查询。
+
+## 为Dify创建独立用途Token
+
+打开 [Applications](https://platform.acedata.cloud/console/applications?utm_source=opensource&utm_medium=referral&utm_campaign=evergreen&utm_content=producerdify_readme_api_key)，按需注册登录并选择有 **Producer** 服务权限的应用；只有尚无通用应用时才初始化。经 **管理密钥 → 创建** 给Token取易识别的Dify名称，设置合适的过期、用量和API限制，创建后复制consumer Token。不要使用平台管理Token。授权验证/查询需允许 `/producer/tasks`；生成媒体另需相应服务API权限并可能计费。
+
+![Applications复制/管理密钥真实旧图，北京时间2026年10月9日](../_assets/tutorial/get-api-key-en.png)
+
+![Applications创建对话框真实旧图，北京时间2026年10月9日](../_assets/tutorial/create-api-key-en.png)
+
+这些是复用的Applications实拍，账户/Token已遮挡，不是Producer候选插件的成功UI。原图创建窗口已取消；本轮未新建专用Token、未运行新生成，也不证明主服务恢复。[截图来源](../_assets/tutorial/key-screenshots-provenance.json)保留原UTC时间。把Token本身粘贴到Dify原生保密凭据字段，不加Bearer，不放进提示词或导出工作流。凭据验证成功只证明访问权限，不等于生成服务可用。
 
 ## 工具与工作流
 
@@ -45,3 +55,5 @@
 - 联系：dev@acedata.cloud
 
 需要 Python 3.12。运行 `python -m pytest tests -q`、`ruff check .`、`ruff format --check .` 和 `dify plugin package .`。真实 Dify 截图与结果、未覆盖项见 tests 目录；单元测试通过不等于所有模型真实调用通过，市场上架和安装另行验收。
+
+参数门槛按当前公开契约：普通生成需要prompt；自定义人声需要lyric；custom=true且instrumental=true时两者可省略；extend需要audio_id、正数continue_at，并提供歌词或instrumental=true。组合不满足时在发出网络请求前拒绝。本轮仅离线契约验证，不是音乐生成终态验收。

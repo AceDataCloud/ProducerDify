@@ -3,10 +3,10 @@ type: plugin
 author: acedatacloud
 name: producer
 label:
-  en_US: Producer
-  zh_Hans: Producer
-  ja_JP: Producer
-  pt_BR: Producer
+  en_US: Producer by Ace Data Cloud
+  zh_Hans: Producer by Ace Data Cloud
+  ja_JP: Producer by Ace Data Cloud
+  pt_BR: Producer by Ace Data Cloud
 description:
   en_US: Use the Ace Data Cloud Producer APIs in Dify workflows.
   zh_Hans: 在 Dify 工作流中使用 Ace Data Cloud Producer API。
