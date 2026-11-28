@@ -1,4 +1,4 @@
-# Privacy policy — Producer by Ace Data Cloud
+# Privacy policy — Producer
 
 Effective date: 2026-10-07. Maintainer/contact: Ace Data Cloud, dev@acedata.cloud.
 
